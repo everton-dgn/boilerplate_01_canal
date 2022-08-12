@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "target": "ES2021",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "Node",
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsxImportSource": "react",
+    "removeComments": true,
+    "sourceMap": true,
+    "allowJs": true,
+    "jsx": "react-jsx",
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
+    "skipLibCheck": true,
+    "incremental": true
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx", ".jest/setup.ts"],
+  "exclude": ["node_modules", "dist", "src/**/*.test*"]
+}
