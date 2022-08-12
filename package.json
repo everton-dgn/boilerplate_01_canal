@@ -1,0 +1,12 @@
+{
+  "name": "boilerplate_01_canal",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/everton-dgn/boilerplate_01_canal.git",
+  "author": "Éverton Toffanetto <evertondgn@hotmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@commitlint/cli": "^17.0.3",
+    "@commitlint/config-conventional": "^17.0.3"
+  }
+}
