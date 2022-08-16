@@ -3,6 +3,6 @@
 
 npx --no-install
 
-yarn typecheck
+# yarn typecheck
 # yarn test
 # yarn build
