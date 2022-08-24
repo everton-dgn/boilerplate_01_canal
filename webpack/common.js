@@ -2,6 +2,9 @@
 const dotenv = require('dotenv')
 const { DefinePlugin, EnvironmentPlugin } = require('webpack')
 
+const isDevelopment = process.env.ENVIRONMENT === 'DEV'
+const isProduction = process.env.ENVIRONMENT === 'PRD'
+
 module.exports = env => ({
   mode: env.mode,
   entry: './src/main/index',
@@ -20,7 +23,24 @@ module.exports = env => ({
       {
         test: /\.tsx?$/,
         exclude: /node_modules/,
-        use: {}
+        use: {
+          loader: 'swc-loader',
+          options: {
+            parseMap: true,
+            jsc: {
+              parser: { syntax: 'typescript', tsx: true },
+              target: 'es2021',
+              minify: { compress: isProduction },
+              transform: {
+                react: {
+                  runtime: 'automatic',
+                  refresh: isDevelopment
+                }
+              }
+            },
+            minify: true
+          }
+        }
       }
     ]
   },
