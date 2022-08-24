@@ -1,4 +1,5 @@
 /* eslint @typescript-eslint/no-var-requires: "off" */
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 const dotenv = require('dotenv')
 const { DefinePlugin, EnvironmentPlugin } = require('webpack')
 
@@ -48,6 +49,7 @@ module.exports = env => ({
     new EnvironmentPlugin({ ...process.env }),
     new DefinePlugin({
       'process.env': JSON.stringify(dotenv.config().parsed)
-    })
+    }),
+    ...(isDevelopment ? [new ReactRefreshWebpackPlugin()] : [])
   ]
 })
