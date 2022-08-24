@@ -1,11 +1,17 @@
-module.exports = {
+/* eslint @typescript-eslint/no-var-requires: "off" */
+const dotenv = require('dotenv')
+const { DefinePlugin, EnvironmentPlugin } = require('webpack')
+
+module.exports = env => ({
+  mode: env.mode,
   entry: './src/main/index',
   output: {
     clean: true,
-    publicPath: ''
+    publicPath: env.publicPath,
+    chunkFilename: '[id].[contenthash].js'
   },
   resolve: {
-    modules: ['src', 'node_modues'],
+    modules: ['src', 'node_modules'],
     extensions: ['.js', '.ts', '.tsx', '.css']
   },
   devServer: {},
@@ -18,5 +24,10 @@ module.exports = {
       }
     ]
   },
-  plugins: []
-}
+  plugins: [
+    new EnvironmentPlugin({ ...process.env }),
+    new DefinePlugin({
+      'process.env': JSON.stringify(dotenv.config().parsed)
+    })
+  ]
+})
