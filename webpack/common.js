@@ -42,6 +42,15 @@ module.exports = env => ({
             minify: true
           }
         }
+      },
+      {
+        test: /\.svg$/i,
+        issuer: /\.tsx?$/,
+        use: ['@svgr/webpack']
+      },
+      {
+        test: /\.(png|jpg|gif|svg)$/i,
+        use: ['file-loader']
       }
     ]
   },
