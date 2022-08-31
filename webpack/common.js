@@ -1,6 +1,7 @@
 /* eslint @typescript-eslint/no-var-requires: "off" */
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 const dotenv = require('dotenv')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { DefinePlugin, EnvironmentPlugin } = require('webpack')
 
 const isDevelopment = process.env.ENVIRONMENT === 'DEV'
@@ -58,6 +59,12 @@ module.exports = env => ({
     new EnvironmentPlugin({ ...process.env }),
     new DefinePlugin({
       'process.env': JSON.stringify(dotenv.config().parsed)
+    }),
+    new HtmlWebpackPlugin({
+      template: './public/index.html',
+      favicon: './public/favicon.ico',
+      minify: isProduction,
+      cache: true
     }),
     ...(isDevelopment ? [new ReactRefreshWebpackPlugin()] : [])
   ]
