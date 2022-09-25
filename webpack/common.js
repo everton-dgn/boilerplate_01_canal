@@ -20,7 +20,18 @@ module.exports = env => ({
     modules: ['src', 'node_modules'],
     extensions: ['.js', '.ts', '.tsx', '.css']
   },
-  devServer: {},
+  devServer: {
+    headers: {
+      'Access-Control-Allow-Headers': '*',
+      'Access-Control-Allow-Methods': '*',
+      'Access-Control-Allow-Origin': '*'
+    },
+    port: env.port,
+    historyApiFallback: true,
+    hot: true,
+    open: true,
+    devMiddleware: { writeToDisk: true }
+  },
   module: {
     rules: [
       {
