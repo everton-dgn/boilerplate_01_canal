@@ -10,6 +10,7 @@ const isProduction = process.env.ENVIRONMENT === 'PRD'
 module.exports = env => ({
   mode: env.mode,
   entry: './src/main/index',
+  devtool: 'source-map',
   output: {
     clean: true,
     publicPath: env.publicPath,
@@ -22,6 +23,11 @@ module.exports = env => ({
   devServer: {},
   module: {
     rules: [
+      {
+        test: /\.js$/,
+        enforce: 'pre',
+        use: ['source-map-loader']
+      },
       {
         test: /\.tsx?$/,
         exclude: /node_modules/,
